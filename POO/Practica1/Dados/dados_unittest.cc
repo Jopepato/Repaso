@@ -64,3 +64,30 @@ TEST(Dados, Diferencia) {
 
   EXPECT_EQ((d.getDado1()-d.getDado2())||(d.getDado2()-d.getDado1()), d.getDiferencia());
 }
+
+TEST(Dados, Lanzamientos) {
+  Dados d;
+
+  EXPECT_EQ(0, d.getLanzamientos1());
+  EXPECT_EQ(0, d.getLanzamientos2());
+
+  d.setDado1(5);
+  d.setDado2(4);
+  EXPECT_EQ(1, d.getLanzamientos1());
+  EXPECT_EQ(1, d.getLanzamientos2());
+
+  for(int i = 1;i<50;i++){
+    d.setDado1(2);
+    d.setDado2(3);
+    EXPECT_EQ(i+1, d.getLanzamientos1());
+    EXPECT_EQ(i+1, d.getLanzamientos2());
+  }
+}
+
+TEST(Dados, Media) {
+  Dados d;
+
+  EXPECT_EQ(0, d.getMedia1());
+  EXPECT_EQ(0, d.getMedia2());
+  d.lanzamiento();
+}

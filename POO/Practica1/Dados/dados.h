@@ -4,12 +4,18 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+
 using namespace std;
 
 class Dados{
     private:
         int d1_;
         int d2_;
+        int lanzamientos1_;
+        int lanzamientos2_;
+        float media1_;
+        float media2_;
+
     public:
         Dados();
         void lanzamiento();
@@ -19,6 +25,10 @@ class Dados{
         bool setDado2(int d2);
         int getSuma();//Devuelve la suma de los dos dados
         int getDiferencia();
+        int getLanzamientos1();
+        int getLanzamientos2();
+        float getMedia1();
+        float getMedia2();
 
 };
 
