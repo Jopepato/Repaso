@@ -90,4 +90,40 @@ TEST(Dados, Media) {
   EXPECT_EQ(0, d.getMedia1());
   EXPECT_EQ(0, d.getMedia2());
   d.lanzamiento();
+  float i = d.getDado1();
+  float j = d.getDado2();
+  EXPECT_EQ(i, d.getMedia1());
+  EXPECT_EQ(j, d.getMedia2());
+  d.lanzamiento();
+  i = i + d.getDado1();
+  i = i/2;
+  j = j + d.getDado2();
+  j = j/2;
+  EXPECT_EQ(i, d.getMedia1());
+  EXPECT_EQ(j, d.getMedia2());
+
+  d.setDado1(2);
+  d.setDado2(3);
+  i = (i + 2)/3;
+  j = (j+3)/3;
+
+  EXPECT_EQ(i, d.getMedia1());
+  EXPECT_EQ(j, d.getMedia2());
+}
+
+TEST(Dados, Vector){
+  Dados d;
+  int *vector1 = d.getUltimos1();
+  int *vector2 = d.getUltimos2();
+  for(int i=0; i<5;i++){
+      EXPECT_EQ(0, vector1[i]);
+      EXPECT_EQ(0, vector2[i]);
+  }
+  for(int i=0;i<5;i++){
+    d.lanzamiento();
+    vector1 = d.getUltimos1();
+    vector2 = d.getUltimos2();
+    EXPECT_EQ(d.getDado1(), vector1[0]);
+    EXPECT_EQ(d.getDado2(), vector2[0]);
+  }
 }

@@ -15,6 +15,8 @@ class Dados{
         int lanzamientos2_;
         float media1_;
         float media2_;
+        int ultimos1_[5];
+        int ultimos2_[5];
 
     public:
         Dados();
@@ -27,8 +29,14 @@ class Dados{
         int getDiferencia();
         int getLanzamientos1();
         int getLanzamientos2();
+        void Media1();
+        void Media2();
         float getMedia1();
         float getMedia2();
+        void Ultimos1();
+        void Ultimos2();
+        int * getUltimos1();// Devuelve el vector de los 5 ultimos del dado 1
+        int * getUltimos2();// Devuelve el vector de los 5 ultimos del dado 2
 
 };
 
