@@ -14,7 +14,7 @@
 
 # Points to the root of Google Test, relative to where this file is.
 # Remember to tweak this if you move this file.
-GTEST_DIR = /home/jaromero/juan/programacion/c++/googletest/gtest-1.7.0
+GTEST_DIR = /home/i32petoj/gtest-1.7.0
 
 # Where to find user code.
 # USER_DIR = ../samples
@@ -85,10 +85,9 @@ jugador_unittest.o : jugador_unittest.cc jugador.cc jugador.h
 
 persona_unittest : persona.o persona_unittest.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
-	
+
 crupier_unittest : crupier.o persona.o crupier_unittest.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
 
 jugador_unittest : jugador.o persona.o jugador_unittest.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
-

@@ -2,13 +2,14 @@
 
 
 Persona::Persona(string DNI, string nombre, string apellidos, string direccion, string localidad, string provincia, string pais){
-  DNI_ = DNI;
-  nombre_ = nombre;
-  apellidos_ = apellidos;
-  direccion_ = direccion;
-  localidad_ = localidad;
-  provincia_ = provincia;
-  pais_ = pais;
+
+  setDNI(DNI);
+  setNombre(nombre);
+  setApellidos(apellidos);
+  setDireccion(direccion);
+  setLocalidad(localidad);
+  setProvincia(provincia);
+  setPais(pais);
 }
 //getters and setter for "DNI"
   //setDNI() -> It catches a dni and gives it to the private member
@@ -74,7 +75,7 @@ string Persona::getProvincia(){
   //setPais() -> It catches a "Pais" and gives it to the private member
   //getPais() -> Returns the value of pais_
 void Persona::setPais(string Pais){
-  pais_ = pais;
+  pais_ = Pais;
 }
 string Persona::getPais(){
   return(pais_);
