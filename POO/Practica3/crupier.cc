@@ -1,7 +1,7 @@
 #include "crupier.h"
 #include "persona.h"
 
-Crupier::Crupier(int codigo, string DNI, string nombre, string apellidos, string direccion,
+Crupier::Crupier(string DNI, string codigo, string nombre, string apellidos, string direccion,
                     string localidad, string provincia, string pais): Persona(DNI){
 
 

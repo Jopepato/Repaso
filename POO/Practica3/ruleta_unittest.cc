@@ -20,7 +20,7 @@ using namespace std;
 TEST(Ruleta, Constructor) {
   Crupier c("33XX","codigo1");
   Ruleta r(c);
-  
+
   EXPECT_EQ("33XX", r.getCrupier().getDNI());
   EXPECT_EQ("codigo1", r.getCrupier().getCodigo());
   EXPECT_EQ(-1, r.getBola());
@@ -161,22 +161,22 @@ TEST(Ruleta, getPremios) {
   r.addJugador(j2);
 
   ofstream salida("44XX.txt");
-  salida << 1 << "," << "10" << "," << 15<< "\n";
-  salida << 2 << "," << "rojo" << "," << 25<< "\n";
-  salida << 3 << "," << "par" << "," << 35<< "\n";
-  salida << 4 << "," << "bajo" << "," << 45<< "\n";
+  salida << 1 << "," << "10" << "," << 15 << "\n";
+  salida << 2 << "," << "rojo" << "," << 25 << "\n";
+  salida << 3 << "," << "par" << "," << 35 << "\n";
+  salida << 4 << "," << "bajo" << "," << 45 << "\n";
   salida.close();
 
   salida.open("55XX.txt");
-  salida << 2 << "," << "rojo" << "," << 15<< "\n";
-  salida << 1 << "," << "15" << "," << 25<< "\n";
-  salida << 4 << "," << "alto" << "," << 35<< "\n";
-  salida << 3 << "," << "impar" << "," << 45<< "\n";
+  salida << 2 << "," << "rojo" << "," << 15 << "\n";
+  salida << 1 << "," << "15" << "," << 25 << "\n";
+  salida << 4 << "," << "alto" << "," << 35 << "\n";
+  salida << 3 << "," << "impar" << "," << 45 << "\n";
   salida.close();
 
   r.setBola(10); // negro, par, bajo
   r.getPremios();
-  //44XX -> 1000 + 15*35 - 25 + 35 + 45 = 1580 
+  //44XX -> 1000 + 15*35 - 25 + 35 + 45 = 1580
   //55XX -> 1000 - 15 - 25 - 35 - 45 = 880
   //banca_ = banca_ - 580 + 120 = 999540
   EXPECT_EQ(1580, r.getJugadores().begin()->getDinero());
@@ -208,10 +208,9 @@ TEST(Ruleta, getPremiosCero) {
 
   r.setBola(0); // jugadores pierden todo
   r.getPremios();
-  //44XX -> 1000 - 10 - 20 - 30 - 40 = 900 
+  //44XX -> 1000 - 10 - 20 - 30 - 40 = 900
   //55XX -> 1000 - 50 - 60 - 70 - 80 = 740
   EXPECT_EQ(900, r.getJugadores().begin()->getDinero());
   EXPECT_EQ(740, (++r.getJugadores().begin())->getDinero());
   EXPECT_EQ(1000360, r.getBanca());
 }
-

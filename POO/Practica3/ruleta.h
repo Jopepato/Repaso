@@ -48,10 +48,8 @@ class Ruleta{
                         //Asi como el dinero de la banca
 
       //Funciones auxiliares segun el tipo de apuesta
-      void Apuesta1(string DNI);
-      void Apuesta2(string DNI);
-      void Apuesta3(string DNI);
-      void Apuesta4(string DNI);
+
+      string Color(int bola);//Devuelve true si es rojo y false si es negro
 };
 
 

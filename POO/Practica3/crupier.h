@@ -10,10 +10,10 @@ using namespace std;
 class Crupier: public Persona{
 
     private:
-          int codigo_;
+          string codigo_;
     public:
 
-          Crupier(int codigo, string DNI,
+          Crupier(string DNI, string codigo,
                     string nombre = "",
                     string apellidos = "",
                     string direccion = "",
@@ -22,8 +22,8 @@ class Crupier: public Persona{
                     string pais = "");
 
 
-          inline void setCodigo(int codigo){codigo_ = codigo;};
-          inline int getCodigo(){return(codigo_);};
+          inline void setCodigo(string codigo){codigo_ = codigo;};
+          inline string getCodigo(){return(codigo_);};
 
 
 

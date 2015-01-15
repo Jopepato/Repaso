@@ -7,7 +7,7 @@
 #include <cstdlib>
 #include "persona.h"
 
-struct Apuesto{
+struct Apuesta{
   int tipo;
   string valor;
   int cantidad;
@@ -20,14 +20,15 @@ class Jugador: public Persona{
         private:
           int dinero_;
           string codigo_;
-          list<Apuesto> apuestas_;
+          list<Apuesta> apuestas_;
 
         public:
 
-          Jugador(string DNI, string codigo, int dinero = 1000,
+          Jugador(string DNI, string codigo,
                   string nombre = "", string apellidos = "",
                   string direccion = "", string localidad = "",
-                  string provincia = "", string pais = "");
+                  string provincia = "", string pais = "",
+                  int dinero = 1000);
 
           inline void setDinero(int dinero){dinero_ = dinero;};
           inline int getDinero(){return(dinero_);};
@@ -35,7 +36,7 @@ class Jugador: public Persona{
           inline void setCodigo(string codigo){codigo_ = codigo;};
           inline string getCodigo(){return(codigo_);};
 
-          inline list<Apuesto> getApuestas(){return apuestas_;};
+          inline list<Apuesta> getApuestas(){return apuestas_;};
           bool setApuestas();
 
 };

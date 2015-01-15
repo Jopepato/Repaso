@@ -4,10 +4,10 @@
 
 
 
-Jugador::Jugador(string DNI, string codigo, int dinero,
+Jugador::Jugador(string DNI, string codigo,
                   string nombre, string apellidos,
                   string direccion, string localidad,
-                  string provincia, string pais): Persona(DNI){
+                  string provincia, string pais, int dinero): Persona(DNI){
 
 
                     setDNI(DNI);
@@ -24,7 +24,7 @@ Jugador::Jugador(string DNI, string codigo, int dinero,
 bool Jugador::setApuestas(){
 
   fstream myfile;
-  struct Apuesto stract;
+  struct Apuesta stract;
   char aux[256];
 
   apuestas_.clear();
