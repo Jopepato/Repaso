@@ -24,7 +24,7 @@ int Ruleta::getBola(){
 }
 
 void Ruleta::setBola(int bola){
-  if(bola>0 || bola<=36)
+  if(bola>=0 || bola<=36)
     bola_ = bola;
 }
 
@@ -198,10 +198,132 @@ void Ruleta::leeJugadores(){
 
 //Simula un giro de la ruleta y la obtención de un numero entre 1 y 36
 void Ruleta::giraRuleta(){
-  bola_= (rand()%36)+1;
+  setBola(rand()%36);
 }
 
 //Actualiza el dinero y las apuestas de los jugadores asi como el dinero de la banca
 void Ruleta::getPremios(){
+
+  //Cogera el tipo de apuesta y cada apuesta la mandará a una funcion distinta
+  string DNI;
+  int tipo;
+  char aux[256];
+  list<Jugador>::iterator i;
+  list<Jugador> aux;
+  fstream myfile;
+
+  //Hacemos que la bola gire
+  giraRuleta();
+
+  for(i = aux.begin(); i != aux.end(); ++i){
+    DNI = i->getDNI();
+    myfile.open((DNI + ".txt").c_str());
+    if(myfile.is_open()){
+      while(myfile.getline(aux, 256, ',')){
+        tipo = atoi(aux);
+        myfile.getline(aux, 256, ',');
+        myfile.getline(aux, 256, '\n');
+        switch(tipo){
+          case 1:
+                Apuesta1(i->getDNI());
+                break;
+          case 2:
+                Apuesta2(i->getDNI());
+                break;
+          case 3:
+                Apuesta3(i->getDNI());
+                break;
+          case 4:
+                Apuesta4(i->getDNI());
+                break;
+        }
+      }
+    }
+    myfile.close();
+  }
+
+}
+
+//Y ahora hacemos las funciones de cada tipo de Apuesta
+
+//Apuesta para la funcion 1 (Apuesta sencilla)
+void Ruleta::Apuesta1(string DNI){
+  list<Jugador>::iterator i;
+  fstream myfile;
+  int dinero;
+  int numero;
+  char aux[256];
+
+  //Abrimos el fichero
+  myfile.open((DNI + ".txt").c_str());
+
+  for(i = jugadores_.begin(); i != jugadores_.last(); ++i){
+    if(DNI == i->getDNI()){
+      while(myfile.getline(aux, 256, ',')){
+        myfile.getline(aux, 256, ',');
+        numero = atoi(aux);
+        myfile.getline(aux, 256, '\n');
+        dinero = atoi(aux);
+
+        if(numero == getBola()){
+          //Ha ganado 35 a 1
+          i->setDinero(i->getDinero() + (dinero * 35));
+          setBanca(getBanca() - (dinero *35));
+        }else{
+          //Ha perdido
+          i->setDinero(i->getDinero() - (dinero));
+          setBanca(getBanca() + (dinero));
+        }
+      }
+    }
+  }
+
+  myfile.close();
+}
+
+//Apuesta para la funcion 2 (Apuesta Rojo o Negro)
+void Ruleta::Apuesta2(string DNI){
+  list<Jugador>::iterator i;
+  fstream myfile;
+  int dinero;
+  int numero;
+  char aux[256];
+
+  //Abrimos el fichero
+  myfile.open((DNI + ".txt").c_str());
+
+  for(i = jugadores_.begin(); i != jugadores_.last(); ++i){
+    if(DNI == i->getDNI()){
+      while(myfile.getline(aux, 256, ',')){
+        myfile.getline(aux, 256, ',');
+        numero = atoi(aux);
+        myfile.getline(aux, 256, '\n');
+        dinero = atoi(aux);
+
+        if(numero == getBola()){
+          //Ha ganado 35 a 1
+          i->setDinero(i->getDinero() + (dinero * 35));
+          setBanca(getBanca() - (dinero *35));
+        }else{
+          //Ha perdido
+          i->setDinero(i->getDinero() - (dinero));
+          setBanca(getBanca() + (dinero));
+        }
+      }
+    }
+  }
+
+  myfile.close();
+
+}
+
+//Apuesta para la funcion 3 (Apuesta par o impar)
+void Ruleta::Apuesta3(string DNI){
+  list<Jugador>::iterator i;
+
+}
+//Apuesta para la funcion 4 (Apuesta a alto o bajo)
+void Ruleta::Apuesta4(string DNI){
+  list<Jugador>::iterator i;
 
 }
