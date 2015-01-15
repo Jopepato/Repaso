@@ -35,7 +35,7 @@ TEST(Jugador, ConstructorParametrosDefecto) {
 
 }
 
-TEST(Crupier, ConstructorParametros) {
+TEST(Jugador, ConstructorParametros) {
   Jugador p("2223", "22231", 288, "Carlos", "Gutierrez", "C/ Mesa 1", "Aguilar", "Sevilla", "España");
   list<Apuesto>::iterator i;
   list<Apuesto> aux;
@@ -52,13 +52,13 @@ TEST(Crupier, ConstructorParametros) {
   EXPECT_EQ("Gutierrez, Carlos", p.getApellidosyNombre());
   aux = p.getApuestas();
   //for(i=aux.begin(); i!= aux.end(); ++i){
-    //EXPECT_FALSE(0, i->tipo);
-    //EXPECT_FALSE("", i->valor);
-    //EXPECT_FALSE(0, i->cantidad);
+    //EXPECT_TRUE(i->tipo);
+    //EXPECT_TRUE(i->valor);
+    //EXPECT_TRUE(i->cantidad);
   //}
 }
 
-TEST(Crupier, ConstructorCopiaDefecto) {
+TEST(Jugador, ConstructorCopiaDefecto) {
   Jugador p("2223", "288", 1024, "Carlos", "Gutierrez", "C/ Mesa 1", "Aguilar", "Sevilla", "España");
   Jugador q(p);
   Jugador r=q;
@@ -105,7 +105,7 @@ TEST(Crupier, ConstructorCopiaDefecto) {
 */
 }
 
-TEST(Crupier, OperadorIgualDefecto) {
+TEST(Jugador, OperadorIgualDefecto) {
   Jugador p("2223", "288", 1024, "Carlos", "Gutierrez", "C/ Mesa 1", "Aguilar", "Sevilla", "España");
   Jugador q("2131", "1313123");
   q=p;

@@ -1,8 +1,4 @@
 
-
-
-
-
 #ifndef JUGADOR_H_
 #define JUGADOR_H_
 
@@ -43,21 +39,6 @@ class Jugador: public Persona{
           bool setApuestas();
 
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #endif
