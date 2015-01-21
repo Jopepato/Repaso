@@ -1,16 +1,22 @@
-using namespace Ruleta {
+#ifndef NAMESPACE_H_
+#define NAMESPACE_H_
 
+
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <cstdio>
+#include <list>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
-#include <string>
-#include <list>
-#include <fstream>
-#include <ctime>
-#include <cstdlib>
-#include <string>
-#include <cstdio>
-#include <iostream>
+
+
+
+
+namespace Ruletah{
 
 
 
@@ -267,6 +273,7 @@ class Ruleta{
 private:
   int banca_;
   int bola_;
+  int lanzamientos_;
   list<Jugador> jugadores_;
   Crupier crupier_;
 
@@ -274,15 +281,23 @@ public:
 
   Ruleta(Crupier crupier);
 
+  //Getters and setters for "Banca"
   inline int getBanca(){return banca_;};
   void setBanca(const int &banca);
 
+  //Getters and setters for "Bola"
   inline int getBola(){return bola_;};
   void setBola(const int &bola);
 
+  //Getters and setters for "Crupier"
   inline Crupier getCrupier(){return crupier_;};
   inline void setCrupier(const Crupier &c){crupier_ = c;};
 
+  //Getters and setters for lanzamiento
+  inline int getLanzamientos(){return lanzamientos_;};
+  inline void setLanzamientos(const int &lanzamientos){lanzamientos_ = lanzamientos;};
+
+  //Get for "Jugador"
   inline list<Jugador> getJugadores(){return jugadores_;};//Devuelve la lista de jugadores
 
   bool addJugador(Jugador j);//Añade un jugador a la lista
@@ -299,6 +314,9 @@ public:
   //Funciones auxiliares segun el tipo de apuesta
 
   string Color(int bola);//Devuelve true si es rojo y false si es negro
+
+  //Funcion que nos da el estado de la ruleta en ese momento
+  void getEstadoRuleta(int &jugadores, int &dinero, int &lanzamientos, int &ganancia);
 };
 
 //Aqui haremos las funciones de la clase ruleta
@@ -307,6 +325,7 @@ Ruleta::Ruleta(Crupier crupier):crupier_(crupier){
   srand(time(NULL));
   setBanca(1000000);
   setBola(-1);
+  setLanzamientos(0);
 }
 
 
@@ -493,6 +512,7 @@ void Ruleta::setBola(const int &bola){
     //Simula un giro de la ruleta y la obtención de un numero entre 1 y 36
     void Ruleta::giraRuleta(){
       setBola(rand()%36);
+      setLanzamientos(getLanzamientos() + 1);
     }
 
     void Ruleta::getPremios(){
@@ -596,31 +616,37 @@ void Ruleta::setBola(const int &bola){
       return (color);
     }
 
+    //Metodo que nos muestra el estado actual de la ruleta
+    void Ruleta::getEstadoRuleta(int &jugadores, int &dinero, int &lanzamientos, int &ganancia){
 
+      list<Jugador> aux;
+      list<Jugador>::iterator i;
+      aux = getJugadores();
+      jugadores = 0;
+      dinero = 0;
+      lanzamientos = 0;
+      ganancia = 0;
 
+      //Recorremos la lista de jugadoes contandolos y sumando su dinero
+      for(i = aux.begin(); i != aux.end(); ++i){
+        jugadores++;
+        //Este es el dinero pero de los jugadores
+        dinero = dinero + i->getDinero();
+      }
+      //Ahora le sumamos el dinero de la banca
+      dinero = dinero + getBanca();
 
+      //Recogemos los lanzamientos
+      lanzamientos = getLanzamientos();
 
+      //Y ahora la ganancia
 
+      ganancia = getBanca() - 1000000;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
 
 
 }
+
+#endif

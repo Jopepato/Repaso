@@ -1,0 +1,2 @@
+ruleta-ppal: ruleta-ppal.cc jugador.cc jugador.h crupier.cc crupier.h persona.cc persona.h
+	g++ ruleta-ppal.cc ruleta.cc persona.cc crupier.cc jugador.cc -o ruleta.ppal

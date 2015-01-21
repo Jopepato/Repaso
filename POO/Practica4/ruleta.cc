@@ -6,6 +6,7 @@ Ruleta::Ruleta(Crupier crupier):crupier_(crupier){
   srand(time(NULL));
   setBanca(1000000);
   setBola(-1);
+  setLanzamientos(0);
 }
 
 
@@ -192,6 +193,7 @@ void Ruleta::leeJugadores(){
 //Simula un giro de la ruleta y la obtención de un numero entre 1 y 36
 void Ruleta::giraRuleta(){
   setBola(rand()%36);
+  setLanzamientos(getLanzamientos() + 1);
 }
 
 void Ruleta::getPremios(){
@@ -293,4 +295,33 @@ string Ruleta::Color(int bola){
   }
 
   return (color);
+}
+
+//Metodo que nos muestra el estado actual de la ruleta
+void Ruleta::getEstadoRuleta(int &jugadores, int &dinero, int &lanzamientos, int &ganancia){
+
+  list<Jugador> aux;
+  list<Jugador>::iterator i;
+  aux = getJugadores();
+  jugadores = 0;
+  dinero = 0;
+  lanzamientos = 0;
+  ganancia = 0;
+
+  //Recorremos la lista de jugadoes contandolos y sumando su dinero
+  for(i = aux.begin(); i != aux.end(); ++i){
+    jugadores++;
+    //Este es el dinero pero de los jugadores
+    dinero = dinero + i->getDinero();
+  }
+  //Ahora le sumamos el dinero de la banca
+  dinero = dinero + getBanca();
+
+  //Recogemos los lanzamientos
+  lanzamientos = getLanzamientos();
+
+  //Y ahora la ganancia
+
+  ganancia = getBanca() - 1000000;
+
 }

@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include "persona.h"
 
+
 struct Apuesta{
   int tipo;
   string valor;

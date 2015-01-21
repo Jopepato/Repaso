@@ -1,2 +1,1 @@
-44XX,jugador1,,,,,,,1000
-55XX,jugador2,,,,,,,1000
+13123,adsad,aaad,adsa,adsa,adad,adads,ada,1000
